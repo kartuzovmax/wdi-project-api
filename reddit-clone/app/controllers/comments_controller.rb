@@ -15,7 +15,9 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    #Finds the post from the URL params Id - Make sure you pass that id.
+    @post = Post.find(params[:id])
+    @comment = @post.comments.new(comment_params)
 
     if @comment.save
       render json: @comment, status: :created, location: @comment

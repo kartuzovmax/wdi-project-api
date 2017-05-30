@@ -2,7 +2,7 @@ require 'jwt'
 class Auth
   ALGORITHM  = "HS256"
 
-def self.encode(payload, expiry=(24*7).hours.from_now)
+def self.encode(payload, expiry=24.hours.from_now)
   payload[:exp ] = expiry.to_i
   JWT.encode(payload, auth_secret, ALGORITHM)
 end
